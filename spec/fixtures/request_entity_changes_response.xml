@@ -1,0 +1,52 @@
+<s:Envelope xmlns:s='http://www.w3.org/2003/05/soap-envelope' xmlns:a='http://www.w3.org/2005/08/addressing' xmlns:u='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'>
+  <s:Header>
+    <a:Action s:mustUnderstand='1'>
+      http://schemas.microsoft.com/xrm/2011/Contracts/Services/IOrganizationService/ExecuteResponse
+    </a:Action>
+    <a:RelatesTo>urn:uuid:792e7104-6ce1-4ac8-8fb7-c13693c56dd1</a:RelatesTo>
+    <ActivityId CorrelationId='5aa12a20-5379-40c8-8380-6fd0081c2828' xmlns='http://schemas.microsoft.com/2004/09/ServiceModel/Diagnostics'>00000000-0000-0000-0000-000000000000</ActivityId>
+    <o:Security s:mustUnderstand='1' xmlns:o='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd'>
+      <u:Timestamp u:Id='_0'>
+        <u:Created>2017-08-07T05:16:05.552Z</u:Created>
+        <u:Expires>2017-08-07T05:21:05.552Z</u:Expires>
+      </u:Timestamp>
+    </o:Security>
+  </s:Header>
+  <s:Body>
+    <ExecuteResponse xmlns='http://schemas.microsoft.com/xrm/2011/Contracts/Services'>
+      <ExecuteResult i:type='b:RetrieveEntityChangesResponse' xmlns:b='http://schemas.microsoft.com/xrm/2011/Contracts' xmlns:i='http://www.w3.org/2001/XMLSchema-instance'>
+        <b:ResponseName>RetrieveEntityChanges</b:ResponseName>
+        <b:Results xmlns:c='http://schemas.datacontract.org/2004/07/System.Collections.Generic'>
+          <b:KeyValuePairOfstringanyType>
+            <c:key>EntityChanges</c:key>
+            <c:value i:type='d:BusinessEntityChanges' xmlns:d='http://schemas.microsoft.com/xrm/7.1/Contracts'>
+              <d:Changes>
+                <d:anyType i:type='d:NewOrUpdatedItem'>
+                  <d:NewOrUpdatedEntity>
+                    <b:Attributes>
+                      <b:KeyValuePairOfstringanyType>
+                        <c:key>organizationid</c:key>
+                        <c:value i:type='e:guid' xmlns:e='http://schemas.microsoft.com/2003/10/Serialization/'>a2e85b8c-d4da-468f-a639-0eaee51b017a</c:value>
+                      </b:KeyValuePairOfstringanyType>
+                    </b:Attributes>
+                    <b:EntityState i:nil='true'/>
+                    <b:FormattedValues/>
+                    <b:Id>a2e85b8c-d4da-468f-a639-0eaee51b017a</b:Id>
+                    <b:KeyAttributes/>
+                    <b:LogicalName>organization</b:LogicalName>
+                    <b:RelatedEntities/>
+                    <b:RowVersion i:nil='true'/>
+                  </d:NewOrUpdatedEntity>
+                  <d:Type>NewOrUpdated</d:Type>
+                </d:anyType>
+              </d:Changes>
+              <d:DataToken>1225692!08/07/2017 05:16:05</d:DataToken>
+              <d:MoreRecords>false</d:MoreRecords>
+              <d:PagingCookie i:nil='true'/>
+            </c:value>
+          </b:KeyValuePairOfstringanyType>
+        </b:Results>
+      </ExecuteResult>
+    </ExecuteResponse>
+  </s:Body>
+</s:Envelope>

@@ -16,7 +16,6 @@ module DynamicsCRM
           value_element = key_value_pair.elements["#{namespace_alias}:value"]
           value = value_element.text
           begin
-
             case value_element.attributes["type"]
             when "b:OptionSetValue"
               # Nested value. Appears to always be an integer.
@@ -35,6 +34,8 @@ module DynamicsCRM
               value = entity_ref
             when "b:EntityCollection"
               value = XML::EntityCollection.new(value_element)
+            when "d:BusinessEntityChanges"
+              value = XML::EntityChanges.new(value_element)
             when "d:EntityMetadata", /^d:\w*AttributeMetadata$/
               value = value_element
             when "d:ArrayOfEntityMetadata"

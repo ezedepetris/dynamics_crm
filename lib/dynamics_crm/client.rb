@@ -130,6 +130,20 @@ module DynamicsCRM
       Response::RetrieveResult.new(xml_response)
     end
 
+    def retrieve_entity_changes(entity_name, columns=[], page_count:5000, page_number: 1, paging_cookie: nil, return_total_record_count: false, data_version: nil)
+      column_set = XML::ColumnSet.new(columns)
+      page_info =  XML::PageInfo.new(count: page_count, page_number: page_number, paging_cookie: paging_cookie, return_total_record_count: return_total_record_count)
+
+      response = self.execute("RetrieveEntityChanges", {
+                        EntityName: entity_name,
+                        DataVersion: data_version,
+                        PageInfo: page_info,
+                        Columns: column_set,
+                        }, Response::RetrieveEntityChangesResult)
+
+      response['EntityChanges']
+    end
+
     def rollup(target_entity, query, rollup_type="Related")
       self.execute("Rollup", {
         Target: target_entity,
@@ -181,6 +195,7 @@ module DynamicsCRM
 
     def execute(action, parameters={}, response_class=nil)
       request = execute_request(action, parameters)
+
       xml_response = post(organization_endpoint, request)
 
       response_class ||= Response::ExecuteResult

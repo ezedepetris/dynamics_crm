@@ -55,7 +55,6 @@ module DynamicsCRM
 
         if xml_document
           xml_document.elements.each do |node|
-
             attr_name = DynamicsCRM::StringUtil.underscore(node.name).to_sym
             if entity.respond_to?(attr_name)
               if node.name == "Attributes"

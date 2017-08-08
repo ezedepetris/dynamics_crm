@@ -298,14 +298,14 @@ module DynamicsCRM
         # Default namespace is /crm/2011/Contracts
         ns_alias = "b"
         # Metadata Service calls are under the /xrm/2011/Contracts schema.
-        if ["RetrieveAllEntities", "RetrieveEntityMetadata", "RetrieveEntity", "RetrieveAttribute", "RetrieveMultiple", "RetrieveMetadataChanges"].include?(action)
+        if ["RetrieveAllEntities", "RetrieveEntityMetadata", "RetrieveEntity", "RetrieveAttribute", "RetrieveMultiple", "RetrieveMetadataChanges","RetrieveEntityChanges"].include?(action)
           ns_alias = 'a'
         end
 
         parameters = XML::Parameters.new(parameters)
         build_envelope('Execute') do
           %Q{<Execute xmlns="http://schemas.microsoft.com/xrm/2011/Contracts/Services" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-            <request i:type="#{ns_alias}:#{action}Request" xmlns:a="http://schemas.microsoft.com/xrm/2011/Contracts" xmlns:b="http://schemas.microsoft.com/crm/2011/Contracts">
+            <request i:type="#{ns_alias}:#{action}Request" xmlns:a="http://schemas.microsoft.com/xrm/2011/Contracts">
              #{parameters.to_xml}
              <a:RequestId i:nil="true" />
              <a:RequestName>#{action}</a:RequestName>
