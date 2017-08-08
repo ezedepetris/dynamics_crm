@@ -20,10 +20,10 @@ module DynamicsCRM
 
         if options[:exclude_root]
           %(
-            <b:Count>#{count}</b:Count>
-            <b:PageNumber>#{page_number}</b:PageNumber>
+            <a:Count>#{count}</a:Count>
+            <a:PageNumber>#{page_number}</a:PageNumber>
             #{cookie}
-            <b:ReturnTotalRecordCount>#{return_total_record_count}</b:ReturnTotalRecordCount>
+            <a:ReturnTotalRecordCount>#{return_total_record_count}</a:ReturnTotalRecordCount>
           )
         else
           %(
