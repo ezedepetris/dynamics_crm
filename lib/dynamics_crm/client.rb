@@ -133,7 +133,7 @@ module DynamicsCRM
     def retrieve_entity_changes(entity_name, columns=[], page_count:5000, page_number: 1, paging_cookie: nil, data_version: nil, return_total_record_count: false)
       column_set = XML::ColumnSet.new(columns)
       page_info =  XML::PageInfo.new(count: page_count, page_number: page_number, paging_cookie: paging_cookie, return_total_record_count: return_total_record_count)
-      puts "PageInfo: #{page_info.inspect}"
+
       response = self.execute("RetrieveEntityChanges", {
                         EntityName: entity_name,
                         DataVersion: data_version,

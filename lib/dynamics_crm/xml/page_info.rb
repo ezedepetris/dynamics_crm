@@ -13,9 +13,9 @@ module DynamicsCRM
       # Using Entity vs entity causes the error: Value cannot be null.
       def to_xml(options={})
         cookie = if paging_cookie.nil?
-          '<b:PagingCookie nil="true" />'
+          '<a:PagingCookie nil="true" />'
         else
-          %(<b:PagingCookie>#{CGI.escapeHTML(paging_cookie)}</b:PagingCookie>)
+          %(<a:PagingCookie>#{CGI.escapeHTML(paging_cookie)}</a:PagingCookie>)
         end
 
         if options[:exclude_root]
