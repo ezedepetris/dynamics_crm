@@ -130,7 +130,7 @@ module DynamicsCRM
       Response::RetrieveResult.new(xml_response)
     end
 
-    def retrieve_entity_changes(entity_name, columns=[], page_count:5000, page_number: 1, paging_cookie: nil, return_total_record_count: false, data_version: nil)
+    def retrieve_entity_changes(entity_name, columns=[], page_count:1, page_number: 5000, paging_cookie: nil, data_version: nil, return_total_record_count: false)
       column_set = XML::ColumnSet.new(columns)
       page_info =  XML::PageInfo.new(count: page_count, page_number: page_number, paging_cookie: paging_cookie, return_total_record_count: return_total_record_count)
 
