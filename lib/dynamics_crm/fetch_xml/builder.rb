@@ -27,7 +27,7 @@ module DynamicsCRM
   module FetchXml
 
     class Builder
-      attr_accessor :version, :output_format, :mapping, :distinct
+      attr_accessor :version, :output_format, :mapping, :distinct, :page_info
 
       def initialize(options={})
         @entities = []
@@ -37,6 +37,7 @@ module DynamicsCRM
         @output_format = options[:output_format] || 'xml-platform'
         @mapping = options[:mapping] || 'logical'
         @distinct = options[:distinct] || false
+        @page_info = XML::PageInfo.new(count: (options[:page_count] || 5000), page_number: (options[:page_number] || 1))
       end
 
       def entity(logical_name)
@@ -47,7 +48,7 @@ module DynamicsCRM
       def to_xml
         @builder = ::Builder::XmlMarkup.new(:indent=>2)
         # <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
-        builder.fetch(version: @version, :"output-format" => @output_format, mapping: @mapping, distinct: @distinct) {
+        builder.fetch(version: @version, :"output-format" => @output_format, mapping: @mapping, distinct: @distinct, paging_cookie: @page_info.paging_cookie, page: @page_info.page_number, count: @page_info.count) {
           @entities.each do |e|
             # <entity name="opportunityproduct">
             builder.entity(name: e.logical_name) {
@@ -106,7 +107,6 @@ module DynamicsCRM
           end
         }
       end
-
     end
   end
 end
