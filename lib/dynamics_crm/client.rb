@@ -65,6 +65,13 @@ module DynamicsCRM
     #
     # Returns true on success or raises Fault
     def authenticate(username, password)
+      puts "\n"
+      puts "\n"
+      puts "\n"
+      puts " --- AUTHENTICATE  --- "
+      puts "\n"
+      puts "\n"
+      puts "\n"
       @username = username
       @password = password
 
@@ -74,11 +81,39 @@ module DynamicsCRM
         build_ocp_request(username, password, region, login_url)
       end
 
+      puts "\n\n\n======================================== BEFORE POST ========================================\n\n\n"
+
       soap_response = post(login_url, auth_request)
+      puts "\n"*5
+      puts "======================================== SOAP RESPONSE ========================================"
+      puts soap_response
+      puts "-----------------------------------------------------------------------------------------------"
+      puts soap_response.inspect
+      puts "-----------------------------------------------------------------------------------------------"
+      puts soap_response.to_s
+      puts "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      puts "\n"*5
 
       document = REXML::Document.new(soap_response)
+
+      puts "\n"*5
+      puts "======================================== DOCUMENT ========================================"
+      puts document
+      puts "------------------------------------------------------------------------------------------"
+      puts document.inspect
+      puts "------------------------------------------------------------------------------------------"
+      puts document.to_s
+      puts "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      puts "\n"*5
+
+
       # Check for Fault
       fault_xml = document.get_elements("//[local-name() = 'Fault']")
+      puts "\n"*5
+      puts "======================================== FAULT XML ========================================"
+      puts fault_xml
+      puts "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      puts "\n"*5
       raise XML::Fault.new(fault_xml) if fault_xml.any?
 
       if on_premise?
